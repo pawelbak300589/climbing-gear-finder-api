@@ -1,0 +1,12 @@
+{
+  "secret": "lwJz3S376iHXMlkQ9Y1a63kgjF14rUnIytjzbF4M7byg69TUzByfnhvnDzkFIxG",
+  "database": {
+    "client": "pg",
+    "connection": {
+      "host": "127.0.0.1",
+      "user": "postgres",
+      "password": "test",
+      "database": "climbing_gear_finder"
+    }
+  }
+}

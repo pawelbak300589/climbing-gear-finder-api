@@ -22,10 +22,7 @@ function scrapeBrands(req, res, next) {
             break;
 
         default:
-            const error = Error("Website like this does not exist!");
-            error.statusCode = 500;
-            throw error;
-            break;
+            next(Error("Website like this does not exist!"));
     }
 }
 function scrapeGears(req, res, next) {}

@@ -10,6 +10,7 @@ app.use(cors());
 
 // api routes
 app.use('/auth', require('./auth/auth.controller'));
+app.use('/scrape', require('./scrape/scrape.controller'));
 
 // global error handler
 app.use(errorHandler);

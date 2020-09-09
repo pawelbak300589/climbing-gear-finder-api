@@ -25,7 +25,7 @@ app.use(cors());
 
 // api routes
 // app.use('/auth', require('./controllers/auth'));
-app.use('/scrape', require('./scrape/scrape.controller'));
+app.use('/scrape', require('./controllers/scrape'));
 
 // global error handler
 app.use(errorHandler);

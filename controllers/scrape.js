@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authorize = require("../_middleware/authorize");
-const AlpinTrek = require("./scrapers/AlpinTrek");
+const AlpinTrek = require("../scrape/scrapers/AlpinTrek");
 
 // routes
 router.get("/:websiteName/brands", scrapeBrands);

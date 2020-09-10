@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const authorize = require("../_middleware/authorize");
 const AlpinTrek = require("../scrape/scrapers/AlpinTrek");
 
 // routes
@@ -25,4 +24,8 @@ function scrapeBrands(req, res, next) {
             next(Error("Website like this does not exist!"));
     }
 }
-function scrapeGears(req, res, next) {}
+function scrapeGears(req, res, next) {
+    const { websiteName } = req.params;
+
+    // TODO:
+}

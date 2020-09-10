@@ -34,17 +34,17 @@ app.use(errorHandler);
 Brand.hasMany(BrandNameMapping);
 Brand.hasMany(BrandImage);
 Brand.hasMany(BrandUrl);
-BrandNameMapping.hasOne(Brand);
-BrandImage.hasOne(Brand);
-BrandUrl.hasOne(Brand);
+// BrandNameMapping.hasOne(Brand);
+// BrandImage.hasOne(Brand);
+// BrandUrl.hasOne(Brand);
 BrandUrl.hasOne(Website);
 
 Gear.hasMany(GearNameMapping);
 Gear.hasMany(GearImage);
 Gear.hasMany(GearUrl);
-GearNameMapping.hasOne(Gear);
-GearImage.hasOne(Gear);
-GearUrl.hasOne(Gear);
+// GearNameMapping.hasOne(Gear);
+// GearImage.hasOne(Gear);
+// GearUrl.hasOne(Gear);
 GearUrl.hasOne(Website);
 
 Price.hasOne(Website);

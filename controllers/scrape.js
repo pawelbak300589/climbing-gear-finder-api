@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+
 const AlpinTrek = require("../scrape/scrapers/AlpinTrek");
+const scrapeService = require("../services/scrape");
 
 // routes
 router.get("/:websiteName/brands", scrapeBrands);
@@ -15,15 +17,19 @@ function scrapeBrands(req, res, next) {
         case "alpintrek":
             AlpinTrek.scrapeBrands()
                 .then((brands) => {
-                    res.json({ message: "test", brands, website: websiteName });
+                    return scrapeService.saveBrandsData(brands);
                 })
-                .catch();
+                .then((result) => {
+                    res.json({ website: websiteName, result });
+                })
+                .catch(err => console.log(err));
             break;
 
         default:
             next(Error("Website like this does not exist!"));
     }
 }
+
 function scrapeGears(req, res, next) {
     const { websiteName } = req.params;
 

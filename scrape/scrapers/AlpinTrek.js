@@ -14,8 +14,8 @@ const scrapeBrands = () => {
                     .find(".manufacturer > .title > a")
                     .text();
                 const url = $(manufacturer)
-                .find(".manufacturer > .title > a")
-                .attr("href");
+                    .find(".manufacturer > .title > a")
+                    .attr("href");
                 const image = $(manufacturer).find(".img > img").attr("data-src");
 
                 brands.push({
@@ -30,7 +30,8 @@ const scrapeBrands = () => {
         .catch((err) => console.log(err));
 };
 
-const scrapeGears = async () => {};
+const scrapeGears = async () => {
+};
 
 module.exports = {
     scrapeBrands,

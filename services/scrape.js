@@ -30,6 +30,12 @@ const saveBrandsData = async (brands) => {
     return { created, existed, blacklisted, messages };
 };
 
+const saveGearsData = async (gears) => {
+    // TODO:
+    return gears;
+};
+
 module.exports = {
-    saveBrandsData
+    saveBrandsData,
+    saveGearsData
 };

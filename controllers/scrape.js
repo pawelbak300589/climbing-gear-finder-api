@@ -33,5 +33,19 @@ function scrapeBrands(req, res, next) {
 function scrapeGears(req, res, next) {
     const { websiteName } = req.params;
 
-    // TODO:
+    switch (websiteName) {
+        case "alpintrek":
+            AlpinTrek.scrapeGears()
+                .then((gears) => {
+                    return scrapeService.saveGearsData(gears);
+                })
+                .then((result) => {
+                    res.json({ website: websiteName, result });
+                })
+                .catch(err => console.log(err));
+            break;
+
+        default:
+            next(Error("Website like this does not exist!"));
+    }
 }

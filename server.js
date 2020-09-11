@@ -18,14 +18,15 @@ app.use(cors());
 // app.use('/auth', require('./controllers/auth'));
 app.use('/scrape', require('./controllers/scrape'));
 app.use('/brands', require('./controllers/brands'));
+app.use('/brands/:brandId/mappings', require('./controllers/brand-name-mappings'));
 
 // global error handler
 app.use(errorHandler);
 
 // start server
 sequelize
-    // .sync({ force: true })
-    .sync()
+    .sync({ force: true })
+    // .sync()
     .then(result => {
         const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
         app.listen(port, () => {

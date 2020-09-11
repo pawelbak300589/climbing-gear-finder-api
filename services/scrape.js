@@ -1,4 +1,7 @@
 const brandService = require("./brand");
+const brandNameMappingService = require("./brand-name-mapping");
+const brandImageService = require("./brand-image");
+const brandUrlService = require("./brand-url");
 
 const saveBrandsData = async (brands) => {
     let created = 0;
@@ -7,18 +10,18 @@ const saveBrandsData = async (brands) => {
     let messages = [];
 
     for (const brandData of brands) {
-        await brandService.createBrand({ name: brandData.name })
+        await brandService.create({ name: brandData.name })
             .then(result => {
                 created++;
                 messages.push(result.message);
 
-                return brandService.createBrandNameMappings(result.brand);
+                return brandNameMappingService.create(result.brand.id);
             })
             .then(brand => {
-                return brandService.createBrandImage(brand, brandData);
+                return brandImageService.create(brand.id, brandData);
             })
             .then(brand => {
-                return brandService.createBrandUrl(brand, brandData);
+                return brandUrlService.create(brand.id, brandData);
             })
             .catch(err => {
                 if (err.type === 'existed') existed++;

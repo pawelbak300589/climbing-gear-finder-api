@@ -19,6 +19,8 @@ app.use(cors());
 app.use('/scrape', require('./controllers/scrape'));
 app.use('/brands', require('./controllers/brands'));
 app.use('/brands/:brandId/mappings', require('./controllers/brand-name-mappings'));
+app.use('/brands/:brandId/images', require('./controllers/brand-images'));
+app.use('/brands/:brandId/urls', require('./controllers/brand-urls'));
 
 // global error handler
 app.use(errorHandler);

@@ -1,11 +1,19 @@
+const { Op } = require("sequelize");
+
 const Brand = require("../models/brand");
 const BrandNameMapping = require("../models/brand-name-mapping");
 const BrandImage = require("../models/brand-image");
 const BrandUrl = require("../models/brand-url");
 const Blacklist = require("../models/blacklist");
 
-const getAll = async () => {
-    return await Brand.findAll();
+const getAll = async (body) => { // TODO: REVIEW this function (fn not tested)
+    const { page, per_page, search_phrase, search_exact } = body;
+    const condition = search_phrase ? { name: { [Op.like]: (search_exact ? `${search_phrase}` : `%${search_phrase}%`) } } : null;
+    return await Brand.findAndCountAll({
+        limit: per_page,
+        offset: page * per_page,
+        where: condition,
+    });
 };
 
 const getById = async (brandId) => {

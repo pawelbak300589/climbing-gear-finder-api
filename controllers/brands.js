@@ -14,8 +14,10 @@ router.post("/:brandId/convert/:type/:parentId", convert);
 
 module.exports = router;
 
-function getAll(req, res, next) {
-    // TODO: send json response with all brands
+function getAll(req, res, next) { // TODO: REVIEW this function (fn not tested)
+    brandService.getAll(req.body)
+        .then(brands => res.json(brands))
+        .catch(next);
 }
 
 function getById(req, res, next) {

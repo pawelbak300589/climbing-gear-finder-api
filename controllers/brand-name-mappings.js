@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const brandService = require("../services/brand");
+const brandNameMappingService = require("../services/brand-name-mapping");
 
 // routes
 router.get("/", getAll);

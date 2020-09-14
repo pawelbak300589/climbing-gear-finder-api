@@ -42,11 +42,37 @@ const create = async ({ name }) => {
     return result;
 };
 
-const update = async (brandId, params) => {
-    // TODO:
+const update = async (brandId, { name }) => {
+    const brand = await Brand.findOne({ where: { name: name } });
+    if (!brand) {
+        throw new Error("Brand doesn't exist!");
+    }
+
+    // validate
+    if (!name) { // TODO: add middleware validator
+        throw new Error(`Brand name is mandatory.`);
+    }
+    if (await Brand.findOne({ where: { name: name } }) || await BrandNameMapping.findOne({ where: { name: name } })) {
+        throw new Error(`Brand with name "${name}" already exist.`);
+    }
+    if (await Blacklist.findOne({ where: { name: name, type: 'brand' } })) {
+        throw new Error(`Brand with name "${name}" is blacklisted.`);
+    }
+
+    // update brand
+    const updatedBrand = await Brand.update({ name });
+    return updatedBrand;
 };
 
 const _delete = async (brandId) => {
+    // TODO:
+};
+
+const blacklist = async (brandId) => {
+    // TODO:
+};
+
+const convert = async (brandId, type, parentId) => {
     // TODO:
 };
 
@@ -62,5 +88,7 @@ module.exports = {
     getById,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    blacklist,
+    convert
 };
